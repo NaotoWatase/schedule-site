@@ -1,63 +1,66 @@
-body {
+/* 改善されたstyle.css */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
     background: #f7f9fc;
     color: #333;
-  }
-
-  nav {
-    background-color: #3949ab;
-    padding: 0.5rem;
+    line-height: 1.6;
   }
   
-  .nav-menu {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .nav-menu li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    transition: background-color 0.2s;
-  }
-  
-  .nav-menu li a:hover {
-    background-color: #5c6bc0;
-  }
-
+  /* コンテナ */
   .container {
     display: flex;
     min-height: 100vh;
   }
   
+  /* モバイルヘッダー（ハンバーガーメニューボタン） */
+  .mobile-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: #3f51b5;
+    padding: 0.7rem 1rem;
+    border-bottom-left-radius: 10px;
+    display: none;
+  }
+  
+  #menu-toggle {
+    font-size: 1.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  /* サイドバー */
   .sidebar {
-    width: 200px;
+    width: 240px;
     background-color: #3f51b5;
     color: white;
     padding: 20px;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .sidebar h2 {
-    font-size: 1.5em;
-    margin-bottom: 1rem;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
   }
   
   .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 2rem 0 0 0;
   }
   
   .sidebar ul li {
-    margin: 0.8em 0;
+    margin: 1rem 0;
   }
   
   .sidebar ul li a {
@@ -65,233 +68,235 @@ body {
     text-decoration: none;
     font-weight: bold;
     display: block;
-    padding: 8px;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
   }
   
   .sidebar ul li a:hover {
     background-color: #5c6bc0;
+    transform: translateX(5px);
   }
   
+  .sidebar ul li a.active {
+    background-color: #5c6bc0;
+  }
+  
+  /* メインコンテンツ */
   .main-content {
     flex: 1;
+    margin-left: 240px;
     padding: 2rem;
     background-color: #f9f9f9;
+    min-height: 100vh;
   }
   
+  .main-content h1 {
+    color: #3f51b5;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+  }
   
+  .main-content h2 {
+    color: #3f51b5;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+  }
   
-  header {
-    background: #3f51b5;
+  .main-content section {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* カレンダー専用スタイル */
+  #calendar {
+    max-width: 100%;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* モーダル */
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+  }
+  
+  .modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  .modal-content h3 {
+    margin-top: 0;
+    color: #3f51b5;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .modal-content button {
+    padding: 12px 20px;
+    margin: 10px 5px 0 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .btn-primary {
+    background-color: #3f51b5;
     color: white;
-    padding: 1rem;
-    text-align: center;
   }
   
-  main {
-    padding: 1rem;
-    max-width: 800px;
-    margin: auto;
+  .btn-primary:hover {
+    background-color: #5c6bc0;
   }
   
-  .add-schedule, .schedule-list {
+  .btn-secondary {
+    background-color: #ddd;
+    color: #333;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #bbb;
+  }
+  
+  /* フォーム */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #3f51b5;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form-group textarea {
+    height: 120px;
+    resize: vertical;
+  }
+  
+  /* カード */
+  .card {
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    color: #3f51b5;
+    margin-top: 0;
+  }
+  
+  /* リスト */
+  .info-list {
+    padding: 0;
+    list-style: none;
+  }
+  
+  .info-list li {
     background: white;
     padding: 1rem;
     margin-bottom: 1rem;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3f51b5;
   }
   
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+  /* レスポンシブデザイン */
+  @media (max-width: 768px) {
+    .mobile-header {
+      display: block;
+    }
   
-  input, button {
-    padding: 10px;
-    font-size: 1rem;
-  }
+    .sidebar {
+      width: 280px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 999;
+    }
   
-  input[type="date"], input[type="text"] {
-    flex: 1;
-  }
+    .sidebar.show {
+      transform: translateX(0);
+    }
   
-  @media (max-width: 600px) {
-    form {
-      flex-direction: column;
+    .main-content {
+      margin-left: 0;
+      padding: 1rem;
+      padding-top: 4rem;
+    }
+  
+    .main-content h1 {
+      font-size: 1.8rem;
+    }
+  
+    .main-content h2 {
+      font-size: 1.4rem;
+    }
+  
+    #calendar {
+      padding: 10px;
+    }
+  
+    .modal-content {
+      width: 95%;
+      padding: 1.5rem;
     }
   }
   
-
-  @media (max-width: 768px) {
-    .container {
-      flex-direction: column;
+  @media (max-width: 480px) {
+    .main-content {
+      padding: 0.5rem;
+      padding-top: 4rem;
+    }
+  
+    .main-content section {
+      padding: 1rem;
     }
   
     .sidebar {
       width: 100%;
-      text-align: center;
-      padding: 1rem;
-      border-bottom: 1px solid #ccc;
-    }
-  
-    .main-content {
-      padding: 1rem;
-    }
-  
-    #calendar {
-      width: 100% !important;
-      padding: 0;
-      margin: 0 auto;
-    }
-  
-    body {
-      font-size: 16px;
-    }
-  
-    .sidebar ul {
-      display: flex;
-      justify-content: space-around;
-      padding: 0;
-    }
-  
-    .sidebar li {
-      list-style: none;
-      margin: 0.5rem;
     }
   }
-  
-
-  /* ハンバーガー用スタイル */
-.mobile-header {
-    display: none;
-    background-color: #3f51b5;
-    padding: 1rem;
-    text-align: left;
-  }
-  
-  #menu-toggle {
-    font-size: 1.5rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* スマホサイズ向けスタイル */
-  @media (max-width: 768px) {
-    .mobile-header {
-      display: block;
-    }
-  
-    .sidebar {
-      display: none;
-      background-color: #3f51b5;
-      padding: 1rem;
-      color: white;
-    }
-  
-    .sidebar ul {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-  
-    .sidebar li {
-      margin: 0.5rem 0;
-    }
-  
-    .sidebar.show {
-      display: block;
-    }
-  
-    .container {
-      flex-direction: column;
-    }
-  }
-  
-
-
-
-  
-
-  /* 固定メニューのボタン */
-.mobile-header {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 999;
-    background-color: #3f51b5;
-    padding: 0.5rem 1rem;
-    border-bottom-left-radius: 10px;
-  }
-  
-  /* メニューボタンの見た目 */
-  #menu-toggle {
-    font-size: 1.5rem;
-    color: white;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* サイドバー：スマホでも固定して画面に残るように */
-  .sidebar {
-    position: fixed;
-    top: 50px; /* メニューボタンの高さ分だけ下げる */
-    right: 0;
-    width: 200px;
-    background-color: #3f51b5;
-    color: white;
-    padding: 1rem;
-    display: none;
-    z-index: 998;
-    border-bottom-left-radius: 10px;
-  }
-  
-  /* メニュー内のリンク */
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .sidebar li {
-    margin: 1rem 0;
-  }
-  
-  .sidebar a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  /* メニューが表示されたとき */
-  .sidebar.show {
-    display: block;
-  }
-  
-  /* レスポンシブ設定（スマホサイズ） */
-  @media (min-width: 769px) {
-    .sidebar {
-      display: block !important;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 220px;
-      height: 100vh;
-      border-radius: 0;
-    }
-  
-    .mobile-header {
-      display: none;
-    }
-  
-    .main-content {
-      margin-left: 220px;
-      padding: 1rem;
-    }
-  }
-  

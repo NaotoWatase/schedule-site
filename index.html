@@ -4,48 +4,528 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ホーム｜スケジュール管理サイト</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+/* 改善されたstyle.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* コンテナ */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* モバイルヘッダー（ハンバーガーメニューボタン） */
+.mobile-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: #3f51b5;
+  padding: 0.7rem 1rem;
+  border-bottom-left-radius: 10px;
+  display: none;
+}
+
+#menu-toggle {
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* サイドバー */
+.sidebar {
+  width: 240px;
+  background-color: #3f51b5;
+  color: white;
+  padding: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+
+.sidebar ul li {
+  margin: 1rem 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+}
+
+.sidebar ul li a:hover {
+  background-color: #5c6bc0;
+  transform: translateX(5px);
+}
+
+.sidebar ul li a.active {
+  background-color: #5c6bc0;
+}
+
+/* メインコンテンツ */
+.main-content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.main-content h1 {
+  color: #3f51b5;
+  margin-bottom: 1rem;
+  font-size: 2.2rem;
+}
+
+.main-content h2 {
+  color: #3f51b5;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+.main-content section {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* カード */
+.card {
+  background: white;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  color: #3f51b5;
+  margin-top: 0;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .mobile-header {
+    display: block;
+  }
+
+  .sidebar {
+    width: 280px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .main-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .main-content h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0.5rem;
+    padding-top: 4rem;
+  }
+
+  .main-content section {
+    padding: 1rem;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
+  </style>
 </head>
 <body>
   <div class="container">
     <header class="mobile-header">
-        <button id="menu-toggle">☰ Menu</button>
-      </header>
-      
-      <aside class="sidebar" id="sidebar">
-        <ul>
-          <li><a href="index.html">🏠 ホーム</a></li>
-          <li><a href="calendar.html">📅 スケジュール</a></li>
-          <li><a href="contact.html">📣 連絡事項</a></li>
-          <li><a href="docs.html">📂 資料</a></li>
-          <li><a href="qanda.html">❓ Q&A</a></li>
-        </ul>
-      </aside>
+      <button id="menu-toggle">☰ Menu</button>
+    </header>
+    
+    <aside class="sidebar" id="sidebar">
+      <ul>
+        <li><a href="#" onclick="showHome()" class="active">🏠 ホーム</a></li>
+        <li><a href="#" onclick="showCalendar()">📅 スケジュール</a></li>
+        <li><a href="#" onclick="showContact()">📣 連絡事項</a></li>
+        <li><a href="#" onclick="showDocs()">📂 資料</a></li>
+        <li><a href="#" onclick="showQA()">❓ Q&A</a></li>
+      </ul>
+    </aside>
 
-    <main class="main-content">
-      <h1>ようこそ！</h1>
-      <p>このサイトでは、40人で使うスケジュールの確認・連絡事項・資料共有などを行うことができます。</p>
+    <main class="main-content" id="main-content">
+      <!-- ホームページ -->
+      <div id="home-page">
+        <h1>ようこそ！</h1>
+        <p>このサイトでは、40人で使うスケジュールの確認・連絡事項・資料共有などを行うことができます。</p>
 
-      <section>
-        <h2>📅 スケジュール</h2>
-        <p>スケジュールは「スケジュールページ」から確認できます。予定はあなた（統制長）だけが編集できます。</p>
-      </section>
+        <section>
+          <h2>📅 スケジュール</h2>
+          <p>スケジュールは「スケジュールページ」から確認できます。予定はあなた（統制長）だけが編集できます。</p>
+        </section>
 
-      <section>
-        <h2>📣 連絡事項</h2>
-        <p>今後追加予定です。運営側からの共有事項などを掲載します。</p>
-      </section>
+        <section>
+          <h2>📣 連絡事項</h2>
+          <p>運営側からの共有事項などを掲載します。重要な連絡事項は随時更新されます。</p>
+        </section>
 
-      <section>
-        <h2>📂 資料</h2>
-        <p>資料ページでは、画像やPDFなども掲載していく予定です。</p>
-      </section>
+        <section>
+          <h2>📂 資料</h2>
+          <p>資料ページでは、画像やPDFなどの重要な資料を確認できます。</p>
+        </section>
 
-      <section>
-        <h2>❓ Q&A</h2>
-        <p>メンバーからよくある質問をまとめる予定です。</p>
-      </section>
+        <section>
+          <h2>❓ Q&A</h2>
+          <p>メンバーからよくある質問をまとめています。</p>
+        </section>
+      </div>
+
+      <!-- カレンダーページ -->
+      <div id="calendar-page" style="display: none;">
+        <h1>📅 スケジュール</h1>
+        <div id="calendar"></div>
+      </div>
+
+      <!-- 連絡事項ページ -->
+      <div id="contact-page" style="display: none;">
+        <h1>📣 連絡事項</h1>
+        <div class="card">
+          <h3>最新の連絡事项</h3>
+          <div id="contact-list">
+            <div class="card">
+              <h3>【重要】次回の集合について</h3>
+              <p><strong>日時:</strong> 2025年6月20日 14:00</p>
+              <p><strong>場所:</strong> 第1会議室</p>
+              <p>参加必須です。遅刻しないようにお願いします。</p>
+              <small style="color: #666;">投稿日: 2025年6月15日</small>
+            </div>
+            
+            <div class="card">
+              <h3>資料の配布について</h3>
+              <p>新しい資料を資料ページにアップロードしました。事前に確認しておいてください。</p>
+              <small style="color: #666;">投稿日: 2025年6月12日</small>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 統制長用：連絡事項追加フォーム -->
+        <div class="card">
+          <h3>連絡事項を追加</h3>
+          <div class="form-group">
+            <label for="contact-title">タイトル</label>
+            <input type="text" id="contact-title" placeholder="連絡事項のタイトル">
+          </div>
+          <div class="form-group">
+            <label for="contact-content">内容</label>
+            <textarea id="contact-content" placeholder="連絡事項の内容"></textarea>
+          </div>
+          <button onclick="addContact()" class="btn-primary">投稿</button>
+        </div>
+      </div>
+
+      <!-- 資料ページ -->
+      <div id="docs-page" style="display: none;">
+        <h1>📂 資料</h1>
+        <div id="docs-list">
+          <div class="card">
+            <h3>📄 基本資料</h3>
+            <p>メンバー向けの基本的な資料集です。</p>
+            <button onclick="viewDoc('basic')" class="btn-primary">閲覧</button>
+          </div>
+          
+          <div class="card">
+            <h3>📊 最新レポート</h3>
+            <p>最新の活動レポートです。</p>
+            <button onclick="viewDoc('report')" class="btn-primary">閲覧</button>
+          </div>
+          
+          <div class="card">
+            <h3>📋 手順書</h3>
+            <p>各種手順をまとめた資料です。</p>
+            <button onclick="viewDoc('manual')" class="btn-primary">閲覧</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q&Aページ -->
+      <div id="qa-page" style="display: none;">
+        <h1>❓ Q&A</h1>
+        <div id="qa-list">
+          <div class="card">
+            <h3>Q: 遅刻や欠席の連絡はどうすればいいですか？</h3>
+            <p><strong>A:</strong> 統制長まで直接連絡してください。可能な限り事前にお知らせください。</p>
+          </div>
+          
+          <div class="card">
+            <h3>Q: 資料はどこで確認できますか？</h3>
+            <p><strong>A:</strong> サイトの「📂 資料」ページから確認できます。重要な資料は随時更新されます。</p>
+          </div>
+          
+          <div class="card">
+            <h3>Q: スケジュールに変更があった場合はどうなりますか？</h3>
+            <p><strong>A:</strong> 連絡事項ページで案内しますので、定期的にチェックしてください。</p>
+          </div>
+        </div>
+        
+        <!-- 質問追加フォーム -->
+        <div class="card">
+          <h3>新しい質問を追加</h3>
+          <div class="form-group">
+            <label for="question">質問</label>
+            <input type="text" id="question" placeholder="質問を入力してください">
+          </div>
+          <div class="form-group">
+            <label for="answer">回答</label>
+            <textarea id="answer" placeholder="回答を入力してください"></textarea>
+          </div>
+          <button onclick="addQA()" class="btn-primary">追加</button>
+        </div>
+      </div>
     </main>
   </div>
+
+  <!-- モーダル -->
+  <div id="eventModal" class="modal">
+    <div class="modal-content">
+      <h3>予定を追加</h3>
+      <input type="text" id="eventTitle" placeholder="予定タイトル" />
+      <br>
+      <button onclick="saveEvent()" class="btn-primary">保存</button>
+      <button onclick="closeModal()" class="btn-secondary">キャンセル</button>
+    </div>
+  </div>
+
+  <!-- FullCalendarのJS -->
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+  <script>
+    let selectedDate = null;
+    let calendar = null;
+    let currentPage = 'home';
+
+    // ページ切り替え関数
+    function showPage(pageId) {
+      const pages = ['home-page', 'calendar-page', 'contact-page', 'docs-page', 'qa-page'];
+      pages.forEach(page => {
+        document.getElementById(page).style.display = 'none';
+      });
+      document.getElementById(pageId).style.display = 'block';
+      
+      // アクティブなメニューを更新
+      const menuItems = document.querySelectorAll('.sidebar a');
+      menuItems.forEach(item => item.classList.remove('active'));
+      
+      // モバイルでメニューを閉じる
+      if (window.innerWidth <= 768) {
+        document.getElementById('sidebar').classList.remove('show');
+      }
+    }
+
+    function showHome() {
+      showPage('home-page');
+      currentPage = 'home';
+      document.querySelector('.sidebar a[onclick="showHome()"]').classList.add('active');
+    }
+
+    function showCalendar() {
+      showPage('calendar-page');
+      currentPage = 'calendar';
+      document.querySelector('.sidebar a[onclick="showCalendar()"]').classList.add('active');
+      
+      // カレンダーを初期化（まだ初期化されていない場合）
+      if (!calendar) {
+        initCalendar();
+      }
+    }
+
+    function showContact() {
+      showPage('contact-page');
+      currentPage = 'contact';
+      document.querySelector('.sidebar a[onclick="showContact()"]').classList.add('active');
+    }
+
+    function showDocs() {
+      showPage('docs-page');
+      currentPage = 'docs';
+      document.querySelector('.sidebar a[onclick="showDocs()"]').classList.add('active');
+    }
+
+    function showQA() {
+      showPage('qa-page');
+      currentPage = 'qa';
+      document.querySelector('.sidebar a[onclick="showQA()"]').classList.add('active');
+    }
+
+    // カレンダー初期化
+    function initCalendar() {
+      const calendarEl = document.getElementById('calendar');
+      const stored = JSON.parse(localStorage.getItem("schedules") || "[]");
+
+      calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'ja',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek'
+        },
+        height: 'auto',
+        events: stored.map(item => ({
+          title: item.title,
+          start: item.date
+        })),
+        dateClick: function(info) {
+          selectedDate = info.dateStr;
+          document.getElementById('eventModal').style.display = 'block';
+        }
+      });
+
+      calendar.render();
+    }
+
+    // モーダル関数
+    function closeModal() {
+      document.getElementById('eventModal').style.display = 'none';
+      document.getElementById('eventTitle').value = '';
+    }
+
+    function saveEvent() {
+      const title = document.getElementById('eventTitle').value;
+      if (!title) return;
+
+      const newEvent = { title: title, date: selectedDate };
+      const current = JSON.parse(localStorage.getItem("schedules") || "[]");
+      current.push(newEvent);
+      localStorage.setItem("schedules", JSON.stringify(current));
+
+      if (calendar) {
+        calendar.addEvent(newEvent);
+      }
+      closeModal();
+    }
+
+    // 連絡事項追加
+    function addContact() {
+      const title = document.getElementById('contact-title').value;
+      const content = document.getElementById('contact-content').value;
+      
+      if (!title || !content) {
+        alert('タイトルと内容を入力してください');
+        return;
+      }
+
+      const contactItem = document.createElement('div');
+      contactItem.className = 'card';
+      contactItem.innerHTML = `
+        <h3>${title}</h3>
+        <p>${content}</p>
+        <small style="color: #666;">投稿日: ${new Date().toLocaleDateString('ja-JP')}</small>
+      `;
+      
+      document.getElementById('contact-list').prepend(contactItem);
+      
+      // フォームをクリア
+      document.getElementById('contact-title').value = '';
+      document.getElementById('contact-content').value = '';
+    }
+
+    // Q&A追加
+    function addQA() {
+      const question = document.getElementById('question').value;
+      const answer = document.getElementById('answer').value;
+      
+      if (!question || !answer) {
+        alert('質問と回答を入力してください');
+        return;
+      }
+
+      const qaItem = document.createElement('div');
+      qaItem.className = 'card';
+      qaItem.innerHTML = `
+        <h3>Q: ${question}</h3>
+        <p><strong>A:</strong> ${answer}</p>
+      `;
+      
+      document.getElementById('qa-list').appendChild(qaItem);
+      
+      // フォームをクリア
+      document.getElementById('question').value = '';
+      document.getElementById('answer').value = '';
+    }
+
+    // 資料閲覧（ダミー）
+    function viewDoc(type) {
+      alert(`${type}の資料を閲覧します（実際の実装では資料を表示）`);
+    }
+
+    // ハンバーガーメニュー
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuButton = document.getElementById('menu-toggle');
+      const sidebar = document.getElementById('sidebar');
+
+      menuButton.addEventListener('click', () => {
+        sidebar.classList.toggle('show');
+      });
+
+      // 画面クリックでメニューを閉じる
+      document.addEventListener('click', (e) => {
+        if (!sidebar.contains(e.target) && !menuButton.contains(e.target)) {
+          sidebar.classList.remove('show');
+        }
+      });
+    });
+
+    // モーダルの外側クリックで閉じる
+    document.getElementById('eventModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
