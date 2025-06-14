@@ -548,23 +548,12 @@
         <div class="brand-logo">SCHEDULE</div>
         <div class="brand-subtitle">DIVISION</div>
       </div>
-      
       <ul>
-        <li><a href="#" onclick="showHome()" class="active">
-          <span class="icon">🏠</span>HOME
-        </a></li>
-        <li><a href="#" onclick="showCalendar()">
-          <span class="icon">📅</span>SCHEDULE
-        </a></li>
-        <li><a href="#" onclick="showContact()">
-          <span class="icon">📣</span>CONTACT
-        </a></li>
-        <li><a href="#" onclick="showDocs()">
-          <span class="icon">📂</span>DOCUMENTS
-        </a></li>
-        <li><a href="#" onclick="showQA()">
-          <span class="icon">❓</span>Q&A
-        </a></li>
+        <li><a href="#" onclick="showHome()" class="active"><span class="icon">🏠</span>HOME</a></li>
+        <li><a href="#" onclick="showCalendar()"><span class="icon">📅</span>SCHEDULE</a></li>
+        <li><a href="#" onclick="showContact()"><span class="icon">📣</span>CONTACT</a></li>
+        <li><a href="#" onclick="showDocs()"><span class="icon">📂</span>DOCUMENTS</a></li>
+        <li><a href="#" onclick="showQA()"><span class="icon">❓</span>Q&A</a></li>
       </ul>
     </aside>
 
@@ -578,23 +567,19 @@
             <p class="hero-subtitle">TEAM MANAGEMENT SYSTEM</p>
           </div>
         </div>
-        
         <div class="content-wrapper">
           <div class="card fade-in-up">
             <h2>📅 SCHEDULE MANAGEMENT</h2>
-            <p>チーム全体のスケジュールを効率的に管理。40人のメンバーが共有できる統合スケジュールシステムです。予定の追加・編集は統制長のみが行えます。</p>
+            <p>チーム全体のスケジュールを効率的に管理。40人のメンバーが共有できる統合スケジュールシステムです。予定の追加・編集は統制長のみ可能。全員がカレンダーで予定確認可能です。</p>
           </div>
-
           <div class="card fade-in-up feature-card">
             <h2>📣 CONTACT & ANNOUNCEMENTS</h2>
             <p>重要な連絡事項やお知らせを即座に全メンバーに共有。リアルタイムでの情報伝達により、チームの連携を強化します。</p>
           </div>
-
           <div class="card fade-in-up">
             <h2>📂 DOCUMENT ARCHIVE</h2>
             <p>重要な資料やドキュメントを安全に保管・共有。PDFファイルや画像など、あらゆる形式の資料に対応しています。</p>
           </div>
-
           <div class="card fade-in-up feature-card">
             <h2>❓ Q&A DATABASE</h2>
             <p>よくある質問とその回答をデータベース化。新規メンバーのオンボーディングを効率化し、情報の検索性を向上させます。</p>
@@ -607,6 +592,7 @@
         <div class="content-wrapper">
           <h1 class="page-title">SCHEDULE</h1>
           <div id="calendar"></div>
+          <button class="btn btn-primary" style="margin:2rem 0;" onclick="openModal()">新しい予定を追加</button>
         </div>
       </div>
 
@@ -615,21 +601,8 @@
         <div class="content-wrapper">
           <h1 class="page-title">CONTACT</h1>
           <div id="contact-list">
-            <div class="card">
-              <h3>【URGENT】次回の集合について</h3>
-              <p><strong>Date:</strong> 2025年6月20日 14:00</p>
-              <p><strong>Location:</strong> 第1会議室</p>
-              <p>全メンバー参加必須です。遅刻厳禁でお願いします。</p>
-              <small style="color: var(--text-muted);">Posted: 2025年6月15日</small>
-            </div>
-            
-            <div class="card">
-              <h3>資料の配布について</h3>
-              <p>新しい重要資料をドキュメントセクションにアップロードしました。次回ミーティング前に必ず確認してください。</p>
-              <small style="color: var(--text-muted);">Posted: 2025年6月12日</small>
-            </div>
+            <!-- ここに追加された連絡事項が表示されます -->
           </div>
-          
           <div class="card">
             <h3>Add New Announcement</h3>
             <div class="form-group">
@@ -649,24 +622,20 @@
       <div id="docs-page" style="display: none;">
         <div class="content-wrapper">
           <h1 class="page-title">DOCUMENTS</h1>
-          <div id="docs-list">
-            <div class="card feature-card">
-              <h3>📄 BASIC DOCUMENTS</h3>
-              <p>チーム運営の基本的な資料集。新規メンバー向けのオンボーディング資料も含まれます。</p>
-              <button onclick="viewDoc('basic')" class="btn btn-primary">VIEW</button>
-            </div>
-            
-            <div class="card">
-              <h3>📊 ACTIVITY REPORTS</h3>
-              <p>最新の活動レポートと実績データ。月次・週次の進捗状況を確認できます。</p>
-              <button onclick="viewDoc('report')" class="btn btn-primary">VIEW</button>
-            </div>
-            
-            <div class="card feature-card">
-              <h3>📋 OPERATION MANUAL</h3>
-              <p>各種オペレーションの詳細手順書。トラブルシューティングガイドも含まれます。</p>
-              <button onclick="viewDoc('manual')" class="btn btn-primary">VIEW</button>
-            </div>
+          <div class="card feature-card">
+            <h3>📄 BASIC DOCUMENTS</h3>
+            <p>チーム運営の基本的な資料集。新規メンバー向けのオンボーディング資料も含まれます。</p>
+            <button class="btn btn-primary">VIEW</button>
+          </div>
+          <div class="card">
+            <h3>📊 ACTIVITY REPORTS</h3>
+            <p>最新の活動レポートと実績データ。月次・週次の進捗状況を確認できます。</p>
+            <button class="btn btn-primary">VIEW</button>
+          </div>
+          <div class="card feature-card">
+            <h3>📋 OPERATION MANUAL</h3>
+            <p>各種オペレーションの詳細手順書。トラブルシューティングガイドも含まれます。</p>
+            <button class="btn btn-primary">VIEW</button>
           </div>
         </div>
       </div>
@@ -676,22 +645,8 @@
         <div class="content-wrapper">
           <h1 class="page-title">Q&amp;A</h1>
           <div id="qa-list">
-            <div class="card">
-              <h3>Q: 遅刻や欠席の連絡方法は？</h3>
-              <p><strong>A:</strong> 統制長に直接連絡してください。緊急時以外は可能な限り事前に連絡をお願いします。</p>
-            </div>
-            
-            <div class="card feature-card">
-              <h3>Q: 資料の確認方法は？</h3>
-              <p><strong>A:</strong> DOCUMENTSセクションから確認できます。重要な資料は定期的に更新されるため、定期チェックをお勧めします。</p>
-            </div>
-            
-            <div class="card">
-              <h3>Q: スケジュール変更の通知は？</h3>
-              <p><strong>A:</strong> CONTACTセクションで即座に案内します。プッシュ通知も設定可能です。</p>
-            </div>
+            <!-- ここに追加されたQ&Aが表示されます -->
           </div>
-          
           <div class="card">
             <h3>Add New Q&A</h3>
             <div class="form-group">
@@ -708,8 +663,7 @@
       </div>
     </main>
   </div>
-
-  <!-- モーダル -->
+  <!-- イベント追加モーダル -->
   <div id="eventModal" class="modal">
     <div class="modal-content">
       <h3>ADD NEW EVENT</h3>
@@ -721,36 +675,36 @@
       <button onclick="closeModal()" class="btn btn-secondary">CANCEL</button>
     </div>
   </div>
-
   <!-- FullCalendarのJS -->
   <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
-
   <script>
     let selectedDate = null;
     let calendar = null;
     let currentPage = 'home';
 
-    // ページ読み込み時のアニメーション
     document.addEventListener('DOMContentLoaded', function() {
-      const cards = document.querySelectorAll('.fade-in-up');
-      cards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
+      showHome();
+      // サイドバーのハンバーガーメニュー
+      document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('show');
       });
     });
 
-    // ページ切り替え関数
     function showPage(pageId) {
       const pages = ['home-page', 'calendar-page', 'contact-page', 'docs-page', 'qa-page'];
       pages.forEach(page => {
         document.getElementById(page).style.display = 'none';
       });
       document.getElementById(pageId).style.display = 'block';
-      
-      // アクティブなメニューを更新
+      // アクティブなメニューの切り替え
       const menuItems = document.querySelectorAll('.sidebar a');
       menuItems.forEach(item => item.classList.remove('active'));
-      
-      // モバイルでメニューを閉じる
+      if(pageId === 'home-page') document.querySelector('.sidebar a[onclick="showHome()"]').classList.add('active');
+      if(pageId === 'calendar-page') document.querySelector('.sidebar a[onclick="showCalendar()"]').classList.add('active');
+      if(pageId === 'contact-page') document.querySelector('.sidebar a[onclick="showContact()"]').classList.add('active');
+      if(pageId === 'docs-page') document.querySelector('.sidebar a[onclick="showDocs()"]').classList.add('active');
+      if(pageId === 'qa-page') document.querySelector('.sidebar a[onclick="showQA()"]').classList.add('active');
+
       if (window.innerWidth <= 768) {
         document.getElementById('sidebar').classList.remove('show');
       }
@@ -759,43 +713,34 @@
     function showHome() {
       showPage('home-page');
       currentPage = 'home';
-      document.querySelector('.sidebar a[onclick="showHome()"]').classList.add('active');
     }
-
     function showCalendar() {
       showPage('calendar-page');
       currentPage = 'calendar';
-      document.querySelector('.sidebar a[onclick="showCalendar()"]').classList.add('active');
-      
-      // カレンダーを初期化（まだ初期化されていない場合）
       if (!calendar) {
         setTimeout(initCalendar, 100);
       }
     }
-
     function showContact() {
       showPage('contact-page');
       currentPage = 'contact';
-      document.querySelector('.sidebar a[onclick="showContact()"]').classList.add('active');
+      loadContactList();
     }
-
     function showDocs() {
       showPage('docs-page');
       currentPage = 'docs';
-      document.querySelector('.sidebar a[onclick="showDocs()"]').classList.add('active');
     }
-
     function showQA() {
       showPage('qa-page');
       currentPage = 'qa';
-      document.querySelector('.sidebar a[onclick="showQA()"]').classList.add('active');
+      loadQAList();
     }
 
     // カレンダー初期化
     function initCalendar() {
       const calendarEl = document.getElementById('calendar');
       if (!calendarEl) return;
-      
+
       const stored = JSON.parse(localStorage.getItem("schedules") || "[]");
 
       calendar = new FullCalendar.Calendar(calendarEl, {
@@ -813,34 +758,80 @@
         })),
         dateClick: function(info) {
           selectedDate = info.dateStr;
-          document.getElementById('eventModal').style.display = 'block';
+          openModal();
         }
       });
-
       calendar.render();
     }
-
-    // モーダル関数
+    // モーダル操作
+    function openModal() {
+      document.getElementById('eventModal').style.display = 'block';
+    }
     function closeModal() {
       document.getElementById('eventModal').style.display = 'none';
       document.getElementById('eventTitle').value = '';
     }
-
     function saveEvent() {
       const title = document.getElementById('eventTitle').value;
       if (!title) return;
-
       const newEvent = { title: title, date: selectedDate };
       const current = JSON.parse(localStorage.getItem("schedules") || "[]");
       current.push(newEvent);
       localStorage.setItem("schedules", JSON.stringify(current));
-
       if (calendar) {
         calendar.addEvent(newEvent);
       }
       closeModal();
     }
-
-    // 連絡事項追加
-    //function addContact() {
-     // const title = document.getElementById('contact-title').value;
+    // 連絡事項追加・表示
+    function loadContactList() {
+      const list = JSON.parse(localStorage.getItem("contacts") || "[]");
+      const container = document.getElementById('contact-list');
+      container.innerHTML = '';
+      list.reverse().forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p><small style="color:var(--text-muted);">Posted: ${item.date}</small>`;
+        container.appendChild(div);
+      });
+    }
+    function addContact() {
+      const title = document.getElementById('contact-title').value;
+      const content = document.getElementById('contact-content').value;
+      if(!title || !content) return;
+      const date = new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric'});
+      const contact = {title, content, date};
+      const current = JSON.parse(localStorage.getItem("contacts") || "[]");
+      current.push(contact);
+      localStorage.setItem("contacts", JSON.stringify(current));
+      document.getElementById('contact-title').value = '';
+      document.getElementById('contact-content').value = '';
+      loadContactList();
+    }
+    // Q&A追加・表示
+    function loadQAList() {
+      const list = JSON.parse(localStorage.getItem("qa") || "[]");
+      const container = document.getElementById('qa-list');
+      container.innerHTML = '';
+      list.reverse().forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'card';
+        div.innerHTML = `<h3>Q: ${item.q}</h3><p><strong>A:</strong> ${item.a}</p>`;
+        container.appendChild(div);
+      });
+    }
+    function addQA() {
+      const q = document.getElementById('question').value;
+      const a = document.getElementById('answer').value;
+      if(!q || !a) return;
+      const qa = {q, a}
+      const current = JSON.parse(localStorage.getItem("qa") || "[]");
+      current.push(qa);
+      localStorage.setItem("qa", JSON.stringify(current));
+      document.getElementById('question').value = '';
+      document.getElementById('answer').value = '';
+      loadQAList();
+    }
+  </script>
+</body>
+</html>
