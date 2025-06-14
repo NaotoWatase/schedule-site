@@ -212,3 +212,86 @@ body {
     }
   }
   
+
+
+
+  
+
+  /* 固定メニューのボタン */
+.mobile-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #3f51b5;
+    padding: 0.5rem 1rem;
+    border-bottom-left-radius: 10px;
+  }
+  
+  /* メニューボタンの見た目 */
+  #menu-toggle {
+    font-size: 1.5rem;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* サイドバー：スマホでも固定して画面に残るように */
+  .sidebar {
+    position: fixed;
+    top: 50px; /* メニューボタンの高さ分だけ下げる */
+    right: 0;
+    width: 200px;
+    background-color: #3f51b5;
+    color: white;
+    padding: 1rem;
+    display: none;
+    z-index: 998;
+    border-bottom-left-radius: 10px;
+  }
+  
+  /* メニュー内のリンク */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin: 1rem 0;
+  }
+  
+  .sidebar a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* メニューが表示されたとき */
+  .sidebar.show {
+    display: block;
+  }
+  
+  /* レスポンシブ設定（スマホサイズ） */
+  @media (min-width: 769px) {
+    .sidebar {
+      display: block !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100vh;
+      border-radius: 0;
+    }
+  
+    .mobile-header {
+      display: none;
+    }
+  
+    .main-content {
+      margin-left: 220px;
+      padding: 1rem;
+    }
+  }
+  

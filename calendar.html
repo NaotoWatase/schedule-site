@@ -40,10 +40,9 @@
     <div class="container">
         <header class="mobile-header">
             <button id="menu-toggle">☰ Menu</button>
-        </header>
-        
-        <aside class="sidebar" id="sidebar">
-            <h2>Menu</h2>
+          </header>
+          
+          <aside class="sidebar" id="sidebar">
             <ul>
               <li><a href="index.html">🏠 ホーム</a></li>
               <li><a href="calendar.html">📅 スケジュール</a></li>
@@ -51,7 +50,7 @@
               <li><a href="docs.html">📂 資料</a></li>
               <li><a href="qanda.html">❓ Q&A</a></li>
             </ul>
-        </aside>
+          </aside>
     
         <main class="main-content">
         <!-- この中に各ページの本文やカレンダーが入る -->
@@ -68,7 +67,7 @@
         <button onclick="closeModal()">キャンセル</button>
     </div>
 
-</body>
+
       
   
 
@@ -123,6 +122,15 @@
     calendar.addEvent(newEvent);
     closeModal();
   }
+</script>
+
+<script>
+    const menuButton = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+  
+    menuButton.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+    });
 </script>
 
 </body>
