@@ -124,3 +124,42 @@ body {
     }
   }
   
+
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      text-align: center;
+      padding: 1rem;
+      border-bottom: 1px solid #ccc;
+    }
+  
+    .main-content {
+      padding: 1rem;
+    }
+  
+    #calendar {
+      width: 100% !important;
+      padding: 0;
+      margin: 0 auto;
+    }
+  
+    body {
+      font-size: 16px;
+    }
+  
+    .sidebar ul {
+      display: flex;
+      justify-content: space-around;
+      padding: 0;
+    }
+  
+    .sidebar li {
+      list-style: none;
+      margin: 0.5rem;
+    }
+  }
+  
