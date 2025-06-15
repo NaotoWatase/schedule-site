@@ -675,7 +675,7 @@
     min-height: 18px;
     padding: 2px 22px !important;
     margin: 8px 0 !important;
-    font-size: 1rem;
+    font-size: 0.5rem;
     box-shadow: none !important;
     text-align: center;
   }
@@ -729,4 +729,53 @@
     color: #222 !important; /* 視認性向上：黒っぽく */
     font-size: 1.1rem;      /* フォントサイズも調整可 */
     font-weight: lighter;
+  }
+
+  .event-datetime {
+    font-size: 0.75em;
+    color: #eee;
+    display: block;
+    margin-top: 1px;
+  }
+
+  .custom-event-label {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 12px;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(30,30,30,0.05);
+    position: relative;
+  }
+  
+  .label-color-bar {
+    width: 4px;
+    height: 38px; /* 高さは好みで調整 */
+    border-radius: 2px;
+    margin-right: 12px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  
+  .label-body {
+    flex: 1;
+    min-width: 0;
+  }
+  
+  .label-title {
+    font-weight: bold;
+    color: #222;
+    font-size: 1.07em;
+    margin: 0;
+    line-height: 1.2;
+    word-break: break-all;
+  }
+  
+  .label-datetime {
+    font-size: 0.95em;
+    color: #aaa;
+    margin-top: 2px;
+    font-weight: normal;
+    line-height: 1.2;
   }

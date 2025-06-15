@@ -88,8 +88,49 @@ function initCalendar() {
     events: stored.map(item => ({
         title: item.title,
         start: item.date,
-        classNames: item.color ? [`label-${item.color}`] : []
+        classNames: item.color ? [`label-${item.color}`] : [],
+        extendedProps: {
+            datetime: item.date // 追加（念のため）
+        }
     })),
+    eventContent: function(arg) {
+        // 色マッピング
+        const colorMap = {
+          red: "#FF6B6B",
+          orange: "#FFB366",
+          yellow: "#FFD93D",
+          green: "#6BCB77",
+          blue: "#4D96FF",
+          purple: "#6B47DC",
+          pink: "#FF7EB9"
+        };
+        const classColor = arg.event.classNames.find(c => c.startsWith("label-"));
+        const colorKey = classColor ? classColor.replace("label-", "") : "blue";
+        const barColor = colorMap[colorKey] || "#4D96FF";
+      
+        // 日時（予定データから取得）
+        const dateObj = arg.event.start;
+        const options = {
+          year: 'numeric', month: 'long', day: 'numeric', weekday: 'short',
+          hour: '2-digit', minute: '2-digit', hour12: false
+        };
+        const dateStr = dateObj
+          ? dateObj.toLocaleString('ja-JP', options).replace(/:\d\d$/, '')
+          : '';
+      
+        // HTML組み立て
+        return {
+          html: `
+            <div class="custom-event-label">
+              <div class="label-color-bar" style="background:${barColor};"></div>
+              <div class="label-body">
+                <div class="label-title">${arg.event.title}</div>
+                <div class="label-datetime">${dateStr}</div>
+              </div>
+            </div>
+          `
+        };
+    },
     dateClick: function(info) {
         selectedDate = info.dateStr;
         openModal();
@@ -107,18 +148,20 @@ function closeModal() {
 }
 function saveEvent() {
     const title = document.getElementById('eventTitle').value;
-    if (!title) return;
-    // 選択色を取得
+    const dateTime = document.getElementById('eventDateTime').value;
+    if (!title || !dateTime) return;
+  
     const color = document.querySelector('input[name="eventColor"]:checked').value;
-    const newEvent = { title: title, date: selectedDate, color: color }; // ← color追加
+    const newEvent = { title: title, date: dateTime, color: color };
     const current = JSON.parse(localStorage.getItem("schedules") || "[]");
     current.push(newEvent);
     localStorage.setItem("schedules", JSON.stringify(current));
     if (calendar) {
       calendar.addEvent({
         title: title,
-        start: selectedDate,
-        classNames: [`label-${color}`] // ← ここでクラス名付与
+        start: dateTime,
+        classNames: [`label-${color}`],
+        extendedProps: { datetime: dateTime }
       });
     }
     closeModal();
