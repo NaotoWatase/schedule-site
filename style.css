@@ -87,7 +87,7 @@
     padding: 1rem;
     border-bottom-left-radius: 20px;
     display: none;
-    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 10px 30px rgba(67, 53, 48, 0.3);
   }
 
   #menu-toggle {
@@ -527,3 +527,29 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-orange);
   }
+
+
+/*iconの設定*/
+  .menu-link {
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-link:hover {
+    color: #007BFF; /* ホバー時の色 */
+  }
+  
+  .icon {
+    width: 1.3em;
+    height: 1.3em;
+    margin-right: 8px;
+    fill: currentColor; /* これが超重要！文字と同じ色にする */
+  }
+
+  .icon-large {
+    width: 3em;
+    height: 3em;
+  }
+  
