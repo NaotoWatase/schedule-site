@@ -23,7 +23,6 @@
     background: var(--dark-bg);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
   }
 
   .container {
@@ -116,6 +115,7 @@
     overflow-y: auto;
     border-right: 2px solid var(--primary-orange);
     backdrop-filter: blur(10px);
+    z-index: 1000; 
   }
 
   .sidebar-brand {
@@ -757,13 +757,15 @@
   .calendar-scroll-wrapper {
     width: 100%;
     max-width: 100vw;    /* 必要なら調整 */
-    height: 600px;       /* 必要なら調整。画面に合わせて増減OK */
+    height: auto;
+    position: relative;  /* スタッキングコンテキストを分ける */
     overflow-x: auto;
-    overflow-y: auto;
+    overflow-y: hidden;
+    z-index: 1;          /* サイドバーの z-index より小さく */
   }
 
   /* カレンダー本体の最小横幅を広くする（ラベルが長い場合に横スクロールを許可） */
   #calendar {
     min-width: 2000px;   /* 必要に応じてもっと大きくもOK */
-    width: 2000px; 
+    width: 110%; 
   }
