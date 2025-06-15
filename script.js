@@ -75,6 +75,7 @@ function initCalendar() {
         right: 'dayGridMonth,timeGridWeek'
     },
     height: 'auto',
+    dayMaxEventRows: false,
     // 時間ラベルのフォーマットを明示
     slotLabelFormat: {
         hour: '2-digit',

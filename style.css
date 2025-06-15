@@ -367,6 +367,12 @@
     background: rgba(255, 107, 53, 0.1) !important;
   }
 
+  .fc-daygrid-day-frame {
+    min-height: 60px;   /* 高さを必要に応じて調整 */
+    height: auto !important;
+    box-sizing: border-box;
+  }
+
 
 
   /* モーダル */
@@ -700,6 +706,12 @@
     margin-bottom: 10px;
     box-shadow: 0 1px 4px rgba(30,30,30,0.05);
     position: relative;
+  
+    width: 100%;             /* 横幅を親要素いっぱいに */
+    min-width: 0;            /* 折り返しのために必要 */
+    max-width: 100%;         /* 親の幅からはみ出さない */
+    box-sizing: border-box;  /* paddingも幅に含める */
+    overflow-wrap: break-word; /* 長い単語も折り返す */
   }
   
   .label-color-bar {
@@ -713,7 +725,11 @@
   
   .label-body {
     flex: 1;
-    min-width: 0;
+    min-width: 0;           /* ← これ重要！flex子要素の折り返し有効化 */
+    max-width: 100%;        /* はみ出し防止 */
+    overflow-wrap: break-word;  /* 長い単語も折り返す */
+    word-break: break-word;     /* 単語途中でも折り返し */
+    box-sizing: border-box;
   }
   
   .label-title {
@@ -722,7 +738,10 @@
     font-size: 1.07em;
     margin: 0;
     line-height: 1.2;
-    word-break: break-all;
+    word-break: break-word;     /* 単語途中でも折り返し */
+    overflow-wrap: break-word;  /* 長い単語も折り返す */
+    max-width: 100%;           /* はみ出し防止 */
+    box-sizing: border-box;
   }
   
   .label-datetime {
