@@ -708,10 +708,11 @@
     position: relative;
   
     width: 100%;             /* 横幅を親要素いっぱいに */
-    min-width: 0;            /* 折り返しのために必要 */
+    min-width: 200;            /* 折り返しのために必要 */
     max-width: 100%;         /* 親の幅からはみ出さない */
     box-sizing: border-box;  /* paddingも幅に含める */
     overflow-wrap: break-word; /* 長い単語も折り返す */
+    white-space: nowrap; /* 折り返しせず、はみ出した場合横スクロール */
   }
   
   .label-color-bar {
@@ -750,4 +751,19 @@
     margin-top: 2px;
     font-weight: normal;
     line-height: 1.2;
+  }
+
+  /* カレンダー縦横スクロール用ラッパー */
+  .calendar-scroll-wrapper {
+    width: 100%;
+    max-width: 100vw;    /* 必要なら調整 */
+    height: 600px;       /* 必要なら調整。画面に合わせて増減OK */
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  /* カレンダー本体の最小横幅を広くする（ラベルが長い場合に横スクロールを許可） */
+  #calendar {
+    min-width: 1400px;   /* 必要に応じてもっと大きくもOK */
+    width: 1400px; 
   }
