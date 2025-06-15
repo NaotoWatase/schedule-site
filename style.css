@@ -702,14 +702,13 @@
     align-items: flex-start;
     background: #fff;
     border-radius: 12px;
-    padding: 12px 18px;
-    margin-bottom: 10px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
     box-shadow: 0 1px 4px rgba(30,30,30,0.05);
     position: relative;
   
-    width: 100%;             /* 横幅を親要素いっぱいに */
-    min-width: 200;            /* 折り返しのために必要 */
-    max-width: 100%;         /* 親の幅からはみ出さない */
+    width: 50%;             /* 横幅を親要素いっぱいに */
+    max-width: 50%;         /* 親の幅からはみ出さない */
     box-sizing: border-box;  /* paddingも幅に含める */
     overflow-wrap: break-word; /* 長い単語も折り返す */
     white-space: nowrap; /* 折り返しせず、はみ出した場合横スクロール */
@@ -739,10 +738,9 @@
     font-size: 1.07em;
     margin: 0;
     line-height: 1.2;
-    word-break: break-word;     /* 単語途中でも折り返し */
-    overflow-wrap: break-word;  /* 長い単語も折り返す */
-    max-width: 100%;           /* はみ出し防止 */
-    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
   .label-datetime {
