@@ -553,3 +553,180 @@
     height: 3em;
   }
   
+
+  /* カレンダー全体を白＋丸み＋影でカード風に */
+#calendar {
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.09);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: none;
+  }
+  
+  /* カレンダーの1日ごとのセル */
+  .fc-daygrid-day {
+    border-radius: 16px !important;
+    transition: background 0.2s;
+    background: none !important;
+    border: none !important;
+  }
+  .fc-daygrid-day:hover {
+    background: #FFF0E2 !important; /* 淡いオレンジ */
+  }
+  
+  /* 今日の日付セル */
+  .fc-day-today {
+    background: #FFEAD7 !important;
+    border-radius: 16px !important;
+    border: 2px solid #FFB366 !important;
+    box-shadow: 0 2px 8px rgba(255, 140, 66, 0.10);
+  }
+  
+  /* 曜日ヘッダー */
+  .fc-col-header-cell {
+    background: none;
+    font-weight: bold;
+    color: #888;
+    font-size: 1.1rem;
+    border: none !important;
+    padding-bottom: 6px;
+  }
+  
+  /* イベントラベル（予定） */
+  .fc-event {
+    border-radius: 12px !important;
+    padding: 2px 8px !important;
+    font-size: 0.98rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 4px;
+    background: linear-gradient(90deg, #ffb366 60%, #fff0e2 100%) !important;
+    color: #222 !important;
+    border: none !important;
+    box-shadow: 0 2px 6px rgba(255,139,66,0.08);
+    letter-spacing: 0.01em;
+    display: inline-block;
+  }
+  
+  /* ピンクのイベント例（重要ラベルなどで色分けしたい場合） */
+  .fc-event.important {
+    background: linear-gradient(90deg, #FF8C94 60%, #FFE0EA 100%) !important;
+    color: #fff !important;
+  }
+  
+  /* イベントが多い日（+n表示）を丸く目立たせる */
+  .fc-daygrid-more-link {
+    border-radius: 8px;
+    background: #fff0e2;
+    padding: 2px 7px;
+    font-weight: bold;
+    color: #FF8C42;
+    margin-left: 3px;
+  }
+  
+  /* 角丸の枠線など細部も調整 */
+  .fc {
+    border-radius: 28px;
+    overflow: hidden;
+    background: none;
+    border: none;
+  }
+
+
+  /* ========== カレンダーUIを画像2風にカスタマイズ ========== */
+
+/* 曜日ヘッダーをオレンジ色＆白文字に */
+.fc-col-header-cell {
+    background: #FF7043 !important;
+    color: #fff !important;
+    font-weight: bolder;
+    font-family: 'Orbitron';
+    font-size: 1rem;
+    border: none !important;
+    text-align: center;
+  }
+  
+  /* 枠線を薄いグレーに */
+  .fc-theme-standard .fc-scrollgrid,
+  .fc-theme-standard td, 
+  .fc-theme-standard th {
+    border: 1px solid #e0e0e0 !important;
+  }
+  
+  /* 各日セルは白背景＆角丸なし */
+  .fc-daygrid-day {
+    background: rgb(255, 255, 255) !important;
+    border-radius: 0 !important;
+    border: none !important;
+  }
+  
+  /* 今日の日付セルをうっすらグレー */
+  .fc-day-today {
+    background: #f7f9fc !important;
+  }
+  
+  /* イベントラベル（水色・横長・丸み） */
+  .fc-event {
+    background: #75d7e8 !important;
+    color: #fff !important;
+    border-radius: 18px !important;
+    border: none !important;
+    font-weight: bold;
+    min-height: 18px;
+    padding: 2px 22px !important;
+    margin: 8px 0 !important;
+    font-size: 1rem;
+    box-shadow: none !important;
+    text-align: center;
+  }
+  
+  /* 予定が複数ある日の「+n」を丸く水色で */
+  .fc-daygrid-more-link {
+    border-radius: 12px;
+    background: #75d7e8 !important;
+    color: #fff !important;
+    padding: 2px 10px !important;
+    font-weight: bold;
+    margin-left: 2px;
+    font-size: 0.9rem;
+  }
+
+
+  /*ラベルカラー*/
+
+  .color-sample {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    margin: 0 6px 0 2px;
+    border: 2px solid #ccc;
+    vertical-align: middle;
+  }
+  .color-red    { background: #FF6B6B; }
+  .color-orange { background: #FFB366; }
+  .color-yellow { background: #FFD93D; }
+  .color-green  { background: #6BCB77; }
+  .color-blue   { background: #4D96FF; }
+  .color-purple { background: #6B47DC; }
+  .color-pink   { background: #FF7EB9; }
+  #color-options input[type="radio"] { display: none; }
+  #color-options input[type="radio"]:checked + .color-sample { border: 3px solid #333; }
+
+
+  .fc-event.label-red    { background: #FF6B6B !important; }
+  .fc-event.label-orange { background: #FFB366 !important; }
+  .fc-event.label-yellow { background: #FFD93D !important; color: #333 !important; }
+  .fc-event.label-green  { background: #6BCB77 !important; }
+  .fc-event.label-blue   { background: #4D96FF !important; }
+  .fc-event.label-purple { background: #6B47DC !important; }
+  .fc-event.label-pink   { background: #FF7EB9 !important; }
+
+
+  .fc-daygrid-day-number,
+  .fc-timegrid-slot-label {
+    font-family: 'Orbitron', 'Inter', 'Arial', sans-serif !important; /* 好きなフォントに */
+    color: #222 !important; /* 視認性向上：黒っぽく */
+    font-size: 1.1rem;      /* フォントサイズも調整可 */
+    font-weight: lighter;
+  }

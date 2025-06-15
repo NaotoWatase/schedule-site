@@ -170,6 +170,18 @@
       <div class="form-group">
         <label for="eventTitle">EVENT TITLE</label>
         <input type="text" id="eventTitle" placeholder="イベントタイトルを入力" />
+        <div class="form-group">
+            <label>ラベル色を選択</label>
+            <div id="color-options">
+              <label><input type="radio" name="eventColor" value="red"   checked><span class="color-sample color-red"></span></label>
+              <label><input type="radio" name="eventColor" value="orange"><span class="color-sample color-orange"></span></label>
+              <label><input type="radio" name="eventColor" value="yellow"><span class="color-sample color-yellow"></span></label>
+              <label><input type="radio" name="eventColor" value="green" ><span class="color-sample color-green"></span></label>
+              <label><input type="radio" name="eventColor" value="blue"  ><span class="color-sample color-blue"></span></label>
+              <label><input type="radio" name="eventColor" value="purple"><span class="color-sample color-purple"></span></label>
+              <label><input type="radio" name="eventColor" value="pink"  ><span class="color-sample color-pink"></span></label>
+            </div>
+        </div>
       </div>
       <button onclick="saveEvent()" class="btn btn-primary">SAVE</button>
       <button onclick="closeModal()" class="btn btn-secondary">CANCEL</button>

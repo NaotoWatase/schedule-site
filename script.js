@@ -66,15 +66,29 @@ function initCalendar() {
     calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     locale: 'ja',
+    dayCellContent: function(arg) {
+        return arg.date.getDate(); // 「日」など付けず、数字だけ返す
+    },
     headerToolbar: {
         left: 'prev,next today',
         center: 'title',
         right: 'dayGridMonth,timeGridWeek'
     },
     height: 'auto',
+    // 時間ラベルのフォーマットを明示
+    slotLabelFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false, // 24時間表記
+    },
+    slotMinTime: "08:00:00", // 必要に応じて
+    slotMaxTime: "20:00:00", // 必要に応じて
+    slotDuration: "00:30:00", // 30分刻み
+
     events: stored.map(item => ({
         title: item.title,
-        start: item.date
+        start: item.date,
+        classNames: item.color ? [`label-${item.color}`] : []
     })),
     dateClick: function(info) {
         selectedDate = info.dateStr;
@@ -94,15 +108,21 @@ function closeModal() {
 function saveEvent() {
     const title = document.getElementById('eventTitle').value;
     if (!title) return;
-    const newEvent = { title: title, date: selectedDate };
+    // 選択色を取得
+    const color = document.querySelector('input[name="eventColor"]:checked').value;
+    const newEvent = { title: title, date: selectedDate, color: color }; // ← color追加
     const current = JSON.parse(localStorage.getItem("schedules") || "[]");
     current.push(newEvent);
     localStorage.setItem("schedules", JSON.stringify(current));
     if (calendar) {
-    calendar.addEvent(newEvent);
+      calendar.addEvent({
+        title: title,
+        start: selectedDate,
+        classNames: [`label-${color}`] // ← ここでクラス名付与
+      });
     }
     closeModal();
-}
+  }
 // 連絡事項追加・表示
 function loadContactList() {
     const list = JSON.parse(localStorage.getItem("contacts") || "[]");
