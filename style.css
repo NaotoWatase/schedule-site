@@ -367,11 +367,7 @@
     background: rgba(255, 107, 53, 0.1) !important;
   }
 
-  .fc-event {
-    background: var(--gradient-primary) !important;
-    border: none !important;
-    border-radius: 8px !important;
-  }
+
 
   /* モーダル */
   .modal {
@@ -592,27 +588,7 @@
     border: none !important;
     padding-bottom: 6px;
   }
-  
-  /* イベントラベル（予定） */
-  .fc-event {
-    border-radius: 12px !important;
-    padding: 2px 8px !important;
-    font-size: 0.98rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 4px;
-    background: linear-gradient(90deg, #ffb366 60%, #fff0e2 100%) !important;
-    color: #222 !important;
-    border: none !important;
-    box-shadow: 0 2px 6px rgba(255,139,66,0.08);
-    letter-spacing: 0.01em;
-    display: inline-block;
-  }
-  
-  /* ピンクのイベント例（重要ラベルなどで色分けしたい場合） */
-  .fc-event.important {
-    background: linear-gradient(90deg, #FF8C94 60%, #FFE0EA 100%) !important;
-    color: #fff !important;
-  }
+
   
   /* イベントが多い日（+n表示）を丸く目立たせる */
   .fc-daygrid-more-link {
