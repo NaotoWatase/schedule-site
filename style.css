@@ -665,21 +665,6 @@
     background: #f7f9fc !important;
   }
   
-  /* イベントラベル（水色・横長・丸み） */
-  .fc-event {
-    background: #75d7e8 !important;
-    color: #fff !important;
-    border-radius: 18px !important;
-    border: none !important;
-    font-weight: bold;
-    min-height: 18px;
-    padding: 2px 22px !important;
-    margin: 8px 0 !important;
-    font-size: 0.5rem;
-    box-shadow: none !important;
-    text-align: center;
-  }
-  
   /* 予定が複数ある日の「+n」を丸く水色で */
   .fc-daygrid-more-link {
     border-radius: 12px;
@@ -713,14 +698,6 @@
   #color-options input[type="radio"] { display: none; }
   #color-options input[type="radio"]:checked + .color-sample { border: 3px solid #333; }
 
-
-  .fc-event.label-red    { background: #FF6B6B !important; }
-  .fc-event.label-orange { background: #FFB366 !important; }
-  .fc-event.label-yellow { background: #FFD93D !important; color: #333 !important; }
-  .fc-event.label-green  { background: #6BCB77 !important; }
-  .fc-event.label-blue   { background: #4D96FF !important; }
-  .fc-event.label-purple { background: #6B47DC !important; }
-  .fc-event.label-pink   { background: #FF7EB9 !important; }
 
 
   .fc-daygrid-day-number,
